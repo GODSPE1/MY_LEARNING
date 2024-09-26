@@ -1,0 +1,3 @@
+what is Node.js?
+
+Node.js is a JavaScript runtime environment that allows developers to run JavaScript on the server-side. It provides a set of built-in modules and APIs for building server-side applications, as well as a package ecosystem (npm) for managing dependencies. Node.js is often used as a platform for building web servers, microservices, and real-time applications, but it's not a language or a framework in itself.
