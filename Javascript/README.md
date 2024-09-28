@@ -1,20 +1,17 @@
-JavaScript Curriculum for Software Engineering School
+<h1> JavaScript Curriculum for Software Engineering School </h1>
 
-OBJCETIVE
+<h2> OBJCETIVE </h2>
+<h3> Equip students with a deep understanding of JavaScript, preparing them for real-world software engineering challenges. The curriculum is designed to be comprehensive, hands-on, and aligned with modern development practices. </h3>
 
-```
-Equip students with a deep understanding of JavaScript, preparing them for real-world software engineering challenges. The curriculum is designed to be comprehensive, hands-on, and aligned with modern development practices.
-```
-
-1. Introduction to JavaScript
-WEEK 1 - 2
-- Overview of JavaScript
+### 1. Introduction to JavaScript
+## WEEK 1 - 2
+# Overview of JavaScript
 - History and Evolution
 - Role of JavaScript in Web Development
 - Setting Up the Development Environment
 - JavaScript Basics
 
-Syntax and Structure
+# Syntax and Structure
 Variables, Constants, and Data Types
 Operators and Expressions
 Control Flow: Conditionals and Loops
