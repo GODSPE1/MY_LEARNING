@@ -183,5 +183,7 @@
 ##### Text Editor: VS Code
 ##### Version Control: Git and GitHub
 ##### Browser Developer Tools
-##### Online Learning Resources: MDN, JavaScript.info, YouTube Tutorials
-##### Books: Eloquent JavaScript by Marijn Haverbeke, JavaScript: The Good Parts by Douglas Crockford
+##### Online Learning Resources: MDN, JavaScript.info, YouTube Tutorials, Scrimba.io
+##### Books: Eloquent JavaScript by Marijn Haverbeke, JavaScript: The Good Parts by Douglas CrockfordO
+
+##### online Tutor: Brad Traversy, Dave Gray, Net Ninja, Web Dev Simlified
