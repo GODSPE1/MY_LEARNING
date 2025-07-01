@@ -5,7 +5,7 @@
 <h3> Equip students with a deep understanding of JavaScript, preparing them for real-world software engineering challenges. The curriculum is designed to be comprehensive, hands-on, and aligned with modern development practices. </h3>
 
 # 1. Introduction to JavaScript
-## WEEK 1 - 2
+
 ### Overview of JavaScript
 - History and Evolution
 - Role of JavaScript in Web Development
@@ -18,7 +18,7 @@
 - Control Flow: Conditionals and Loops
 
 # 2. Working with Functions
-## WEEK 3 - 4
+
 ### Introduction to Functions
 
 - Defining and Invoking Functions
@@ -32,7 +32,7 @@
 - IIFE (Immediately Invoked Function Expressions)
 
 # 3. Objects and Prototypes
-## WEEK 5 - 6
+
 ### Understanding Objects
 
 - Creating and Modifying Objects
@@ -47,7 +47,7 @@
 - Static Methods and Properties
 
 # 4. Arrays and Iterables
-## WEEK 7 - 8
+
 ### Introduction to Arrays
 
 - Array Creation and Manipulation
@@ -58,7 +58,7 @@
 - Working with Set and Map
 
 # 5. Asynchronous JavaScript
-## WEEK 9 - 10
+
 ### Understanding Asynchronous Programming
 
 - Callbacks and Callback Hell
@@ -71,7 +71,7 @@
 - Event Loop and Concurrency Model
 
 # 6. DOM Manipulation and Events
-## WEEK 11 - 12
+
 ### Document Object Model (DOM)
 
 - Understanding the DOM Structure
@@ -85,7 +85,7 @@
 - Working with Forms and Validations
 
 # 7. Modern JavaScript (ES6+ Features)
-## WEEK 13 - 14
+
 ### ES6 Syntax and Features
 
 - Block Scope with let and const
@@ -99,7 +99,7 @@
 - Transpiling with Babel
 
 # 8. Working with APIs and AJAX
-## WEEK 15 - 16
+
 ### AJAX and Fetch API
 
 - Introduction to AJAX
@@ -114,7 +114,7 @@
 - Introduction to GraphQL (optional, advanced)
 
 # 9. Error Handling and Debugging
-## WEEK 17 - 18
+
 ### Handling Errors in JavaScript
 
 - Understanding try, catch, and finally
@@ -128,7 +128,7 @@
 - Profiling Performance
 
 # 10. Testing in JavaScript
-## WEEK 19 - 20
+
 # Introduction to Testing
 
 - Importance of Testing in Software Development
@@ -141,7 +141,6 @@
 - Testing Asynchronous Code
 
 # 11. JavaScript Best Practices
-## WEEK 21 - 22 Code Quality and Style
 
 - Writing Readable and Maintainable Code
 - Using Linters (ESLint) and Formatters (Prettier)
@@ -154,7 +153,7 @@
 - Security Considerations in JavaScript
 
 # 12. Project: Full-Stack JavaScript Application
-## WEEK 23 - 24
+
 ## Project Overview
 
 ### Building a Full-Stack Application using JavaScript
