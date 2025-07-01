@@ -1,6 +1,6 @@
 <h1> JavaScript Curriculum for Software Engineering School </h1>
 
-<h2> OBJCETIVE </h2>\
+<h2> OBJCETIVE </h2>
 
 <h3> Equip students with a deep understanding of JavaScript, preparing them for real-world software engineering challenges. The curriculum is designed to be comprehensive, hands-on, and aligned with modern development practices. </h3>
 
@@ -166,17 +166,22 @@
 - Deploying the Application to a Cloud Service (e.g., Heroku, AWS)
 - Final Project Presentation
 
-Code Walkthrough and Explanation
-Demonstration of Features
-Q&A Session and Feedback
-Evaluation Criteria:
-Weekly Assignments: 40%
-Midterm Project: 20%
-Final Project: 30%
-Class Participation and Quizzes: 10%
-Tools and Resources:
-Text Editor: VS Code
-Version Control: Git and GitHub
-Browser Developer Tools
-Online Learning Resources: MDN, JavaScript.info, YouTube Tutorials
-Books: Eloquent JavaScript by Marijn Haverbeke, JavaScript: The Good Parts by Douglas Crockford
+<br>
+<br>
+
+
+
+##### Code Walkthrough and Explanation
+##### Demonstration of Features
+##### Q&A Session and Feedback
+##### Evaluation Criteria:
+##### Weekly Assignments: 40%
+##### Midterm Project: 20%
+##### Final Project: 30%
+##### Class Participation and Quizzes: 10%
+##### Tools and Resources:
+##### Text Editor: VS Code
+##### Version Control: Git and GitHub
+##### Browser Developer Tools
+##### Online Learning Resources: MDN, JavaScript.info, YouTube Tutorials
+##### Books: Eloquent JavaScript by Marijn Haverbeke, JavaScript: The Good Parts by Douglas Crockford
