@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="text">This is my fathers world</h1>
+    <br>
+    <h2 id="fisg">Javascript is as this sweet and i dont know</h2>
+    <button onclick="toUpperCase()">Uppercase</button>
+
+    <script>
+        document.getElementById('text').style.color='Brown',
+        document.getElementById('text').style.backgroundColor = 'green';
+        
+
+        document.getElementById('text').textContent = document.getElementById('text').textContent.toUpperCase()
+
+        function toUpperCase() {
+            let element = document.getElementById('fisg')
+            element.textContent= document.getElementById('fisg').textContent.toUpperCase();
+        }
+    </script>
+</body>
+</html>
