@@ -71,7 +71,7 @@ function replaceAll() {
 
 
 function replaceChildeHeading() {
-    const  header = document.querySelector('header');
+    const header = document.querySelector('header');
     const h1 = document.querySelector('header h1');
 
     const h2 = document.createElement('h2')
@@ -94,7 +94,7 @@ function changeform() {
 function changeInputform2() {
     const form2 = document.querySelector("#item-form2");
     const form2Button = form2.querySelector("button");
-    form2Button.innerHTML= '<i class="fa-solid fa-star"></i> Add Item 2';
+                    const input = form2.querySelector("input");
 }
 
 
