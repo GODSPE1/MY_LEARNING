@@ -16,9 +16,10 @@ function onClick(e) {
     e.target.style.backgroundColor = "blue";
     // e.target.style.Color = "blue";
     console.log(e.type)
-    console.log(e.timeStamp)
-    console.log(e.clientX)
-    console.log(e.clientY)
+    console.log(`the time stamp is ${e.timeStamp}`)
+    console.log(`This  X-axis ${e.clientX}`)
+    console.log(`This Y-axis ${e.clientY}`)
+    
 
 }
 
@@ -42,7 +43,7 @@ app_name.addEventListener('click', appTitle);
 // })
 
 
-document.querySelector('a').addEventListener('click', function (e) {
-    e.preventDefault();
+document.querySelector('a').addEventListener('click', (e) => { e.preventDefault();
     console.log('Google link was clicked');
+    
 });
