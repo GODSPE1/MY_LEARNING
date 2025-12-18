@@ -6,10 +6,11 @@ const global = {
       type: '',
       page: 1,
       totalPages: 1,
+      totalResults: 0,
     },
       // totalResults: 0
       api: {
-        apiKey: 'caa66e1169d051fcfe333361271f53b1',
+        apiKey: 'your-api-key goes here',
         apiUrl: 'https://api.themoviedb.org/3/',
   
       }
@@ -376,32 +377,52 @@ async function displaySearch() {
   global.search.type = urlParams.get('type');
   global.search.term = urlParams.get('search-term'); 
 
-  
-  if (global.search.term == '') { 
-    console.log('empty');
-  } else if (global.search.term == null) {
-    console.log('null');
-  }
-
 
   if (global.search.term !== '' && global.search.term !== null) {
     // @todo - make request and display results
-    const { results } = await searchAPIData();
-    console.log(results);
+    const { results, page, total_results, total_pages } = await searchAPIData();
+    console.log(total_pages)
+
+    global.search.page = page;
+    console.log(`page ${global.search.page}`);
+    global.search.totalPages = total_pages; 
+    console.log(`last page ${global.search.totalPages}`);
+    global.search.totalResults = total_results; 
+
+
+    if (results.length === 0) {
+      showAlert('No results found');
+      return;
+    } 
+
+    displaySearchResults(results);
+    document.querySelector('#search-term').value = '';
+    // `;
+  } else {
+    showAlert('please enter something to search', 'alert-error');
+  }
+
+
+
+  // display search results
+  function displaySearchResults(results) {
+    document.querySelector('#search-results').innerHTML = '';
+    document.querySelector('#pagination').innerHTML = '';
+    
     
     results.forEach((result) => {
-     const searchDiv = document.createElement('div');
-     searchDiv.classList.add('card');
-     searchDiv.innerHTML = `
-            ${
-                result.poster_path ? `
-                <img
-                    src="https://image.tmdb.org/t/p/w500${result.poster_path}"
+      const searchDiv = document.createElement('div');
+      searchDiv.classList.add('card');
+      searchDiv.innerHTML = `
+      ${
+        result.poster_path ? `
+        <img
+        src="https://image.tmdb.org/t/p/w500${result.poster_path}"
                     class="card-img-top"
                     alt="${global.search.type === 'movie' ? result.title : result.name}"
-                />
-                ` 
-                : `<img
+                    />
+                    ` 
+                    : `<img
                     src="../images/no-image.jpg"
                     class="card-img-top"
                     alt="${global.search.type === 'movie' ? result.title : result.name}"
@@ -413,17 +434,55 @@ async function displaySearch() {
             <h2>${global.search.type === 'movie' ? result.title : result.name}</h2>
             <p class="text-muted">Released on: ${global.search.type === 'movie' ? result.release_date : result.first_air_date}</p>
           </div>
-     `
-     document.querySelector('#search-results').appendChild(searchDiv);
-    })
-  } else {
-    showAlert('please enter something to search', 'alert-error');
+     `;
+     // dispaly nunmber of results
+    document.querySelector('#search-results-heading').innerHTML = `
+    <h2>${results.length} results of ${global.search.totalResults} for ${global.search.term}</h2>
+    `;
+    document.querySelector('#search-results').appendChild(searchDiv);
+  })
+  displaypagination();
   }
-
-
-
 }
 
+
+// Pagination
+function displaypagination(results) {
+  const paginationDiv = document.createElement('div');
+  paginationDiv.classList.add('pagination')
+  paginationDiv.innerHTML = `
+    <button class="btn btn-primary" id="prev">Prev</button>
+    <button class="btn btn-primary" id="next">Next</button>
+    <div class="page-counter">${global.search.page} of ${global.search.totalPages}</div>
+  `;  
+  document.querySelector('#pagination').appendChild(paginationDiv)
+  
+  if (global.search.page === 1) {
+    document.querySelector('#prev').disabled = true;
+    // Disable prev button 
+  }
+  // Disable next button 
+  if (global.search.page === global.search.totalPages) {
+    document.querySelector('#next').disabled = true;
+  }
+
+  // Next page
+  document.querySelector('#next').addEventListener('click', async () => {
+    global.search.page++;
+    const { results, totalPages } = await searchAPIData()
+    // displaySearchResult(results)
+    displaySearch(results) 
+
+  });
+
+  // Prev page
+  document.querySelector('#prev').addEventListener('click', async () => {
+    global.search.page--;
+    const { results, totalPages } = await searchAPIData()
+    displaySearch(results) 
+  });
+
+}
 
 
 // search data from TMDP API
@@ -439,7 +498,7 @@ async function searchAPIData() {
 
   showSpinner();
 
-  const response = await fetch(`${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}`);
+  const response = await fetch(`${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`);
 
   const data = await response.json();
 
