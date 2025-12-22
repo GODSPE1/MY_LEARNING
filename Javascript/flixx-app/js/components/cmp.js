@@ -1,61 +1,27 @@
- // console.log(window.location.pathname);
-const global = {
-    currentPage: window.location.pathname,
-    search: {
-      term: '',
-      type: '',
-      page: 1,
-      totalPages: 1,
-      totalResults: 0,
-    },
-      // totalResults: 0
-      api: {
-        apiKey: 'your-api-key goes here',
-        apiUrl: 'https://api.themoviedb.org/3/',
-  
-      }
-    };
+import { fetchAPIData } from "../services/api.js";
+import { searchAPIData } from "../services/api.js";
+import { initSwiper } from "../main.js";
+import { global } from "../config.js";
 
-
-// Display Popular movies
-async function displayPopulayMovies() {
-    const { results } = await fetchAPIData('movie/popular');
-
-    results.forEach((movie) => {
-        const div = document.createElement('div')
-        div.classList.add('card');
-        div.innerHTML =  `
-          <a href="movie-details.html?id=${movie.id}">
-           ${
-            movie.poster_path ? ` <img
-              src="https://image.tmdb.org/t/p/w500${movie.poster_path}"
-              class="card-img-top"
-              alt="Movie Title"
-            />` : `
-             <img
-              src="../images/no-image.jpg"
-              class="card-img-top"
-              alt="${movie.title}"
-            />
-            `
-           }
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">${movie.title}</h5>
-            <p class="card-text">
-              <small class="text-muted">Release: ${movie.release_date}</small>
-            </p>
-          </div
-        `;
-        document.querySelector('#popular-movies').appendChild(div);
-        // console.log(movie);
-    })
-
-}
+/**
+ * ---------------------------------------------------------------------------
+ * Display Popular Movies
+ * ---------------------------------------------------------------------------
+ * Fetches a list of currently popular movies from the TMDB API and renders
+ * each movie as a card inside the `#popular-movies` DOM container. Each card
+ * displays the movie's poster (or a fallback image), title, and release date,
+ * and links to a detail page using the movie's unique `id`.
+ *
+ * Dependencies:
+ *   - fetchAPIData(endpoint: string):
+ *       A helper function that performs the HTTP request to the TMDB API and
+ *       returns JSON data.
+ *   - A DOM element with the ID `popular-movies` must exist on the page.   
+ */
 
 
 // Dispaly details of each movie
-async function displayMovieDetails() {
+export async function displayMovieDetails() {
     const movieId = window.location.search.split('=')[1]
     console.log(movieId);
 
@@ -159,6 +125,66 @@ function displayBackgroundImage(type, backdrop_path) {
 
 
 
+
+
+
+
+
+
+
+/** * Fetches data from the TMDB (The Movie Database) API.
+ * 
+ * This function builds a request URL using a base API URL,
+ * endpoint, and API key, then returns the response data.
+ * 
+ * @async
+ * @function fetchAPIData
+ * @param {string} endpoint - The specific API endpoint to fetch data from.
+ * @returns {Promise<Object>} - The JSON response from the API.
+ * 
+ * @example
+ * fetchAPIData('movie/popular')
+ *      .then(data => console.log(data))
+ *      .catch(error => console.log(error))
+*/
+export async function displayPopularMovies() {
+  const { results } = await fetchAPIData('movie/popular');
+
+  results.forEach((movie) => {
+    const div = document.createElement('div');
+    div.classList.add('card');
+    div.innerHTML = `
+          <a href="movie-details.html?id=${movie.id}">
+            ${
+              movie.poster_path
+                ? `<img
+              src="https://image.tmdb.org/t/p/w500${movie.poster_path}"
+              class="card-img-top"
+              alt="${movie.title}"
+            />`
+                : `<img
+            src="../images/no-image.jpg"
+            class="card-img-top"
+            alt="${movie.title}"
+          />`
+            }
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">${movie.title}</h5>
+            <p class="card-text">
+              <small class="text-muted">Release: ${movie.release_date}</small>
+            </p>
+          </div>
+        `;
+
+    document.querySelector('#popular-movies').appendChild(div);
+  });
+}
+
+
+
+
+
 /**
  * ---------------------------------------------------------------------------
  * Display Popular TV Shows
@@ -197,7 +223,7 @@ function displayBackgroundImage(type, backdrop_path) {
  *
  * ---------------------------------------------------------------------------
  */
-async function displayPopularShows() {
+export async function displayPopularShows() {
     const { results: tvresults } = await fetchAPIData('tv/popular');
     console.log(tvresults);
 
@@ -232,12 +258,12 @@ async function displayPopularShows() {
 }
 
 
-
-
-
-
-// Dispaly details of each TvShow
-async function  displayTvShowDetails() {
+/**
+ * Display details of each TvShow
+ * @function displayTvShowDetails
+ * 
+ */
+export async function displayTvShowDetails() {
     const showId = window.location.search.split('=')[1]
     console.log(showId);
 
@@ -313,9 +339,17 @@ async function  displayTvShowDetails() {
     document.querySelector('#show-details').appendChild(div);
 }
 
-// Display slider movies
-async function displaySlider() {
-  const { results: slider_results } = await fetchAPIData('movie/now_playing');
+/**
+ * Display slider movies
+ * @function di
+ */
+export async function displaySlider() {
+    try {
+        const data = await fetchAPIData('movie/now_playing');
+        
+    } catch (error) {
+        
+    }
 
   slider_results.forEach((slider_results) => {
     const slider_div = document.createElement('div');
@@ -340,8 +374,12 @@ async function displaySlider() {
 
 
 
-// Display slider shows
-async function displaySliderShows() {
+/**
+ * Display slider shows
+ * @function displaySliderShows
+ * 
+ */
+export async function displaySliderShows() {
   // console.log("displaySliderShows called!");
 
   const { results} = await fetchAPIData('tv/on_the_air');
@@ -370,7 +408,7 @@ async function displaySliderShows() {
 
 
 // search movies and shows
-async function displaySearch() {
+export async function displaySearch() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
@@ -380,15 +418,22 @@ async function displaySearch() {
 
   if (global.search.term !== '' && global.search.term !== null) {
     // @todo - make request and display results
+    const data = await searchAPIData();
+
+    if (!data || !data.results) {
+      showAlert('Error fetching search results', 'alert-error');
+      return;
+    }
+
     const { results, page, total_results, total_pages } = await searchAPIData();
-    console.log(total_pages)
+    // console.log(total_pages)
+
 
     global.search.page = page;
     console.log(`page ${global.search.page}`);
     global.search.totalPages = total_pages; 
     console.log(`last page ${global.search.totalPages}`);
     global.search.totalResults = total_results; 
-
 
     if (results.length === 0) {
       showAlert('No results found');
@@ -401,11 +446,10 @@ async function displaySearch() {
   } else {
     showAlert('please enter something to search', 'alert-error');
   }
+}
 
-
-
-  // display search results
-  function displaySearchResults(results) {
+// display search results
+export function displaySearchResults(results) {
     document.querySelector('#search-results').innerHTML = '';
     document.querySelector('#pagination').innerHTML = '';
     
@@ -442,12 +486,11 @@ async function displaySearch() {
     document.querySelector('#search-results').appendChild(searchDiv);
   })
   displaypagination();
-  }
 }
 
 
 // Pagination
-function displaypagination(results) {
+export function displaypagination(results) {
   const paginationDiv = document.createElement('div');
   paginationDiv.classList.add('pagination')
   paginationDiv.innerHTML = `
@@ -483,175 +526,3 @@ function displaypagination(results) {
   });
 
 }
-
-
-// search data from TMDP API
-/**
- * 
- * @param {*} endpoint 
- * @returns data
-*/
-async function searchAPIData() {
-
-  const API_KEY = global.api.apiKey;
-  const API_URL = global.api.apiUrl;
-
-  showSpinner();
-
-  const response = await fetch(`${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`);
-
-  const data = await response.json();
-
-  hideSpinner();
-  
-  return data;
-}
-
-
-
-// fetch data from TMDP API
-/**
- * 
- * @param {*} endpoint 
- * @returns data
-*/
-async function fetchAPIData(endpoint) {
-  const API_KEY = global.api.apiKey;
-  const API_URL = global.api.apiUrl;
-  
-  showSpinner(); // Runs the the show spinner
-  
-  const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en&query=${global.search.term}`);
-  
-  const data = await response.json();
-  
-  hideSpinner();
-  
-  return data;
-}
-
-
-// Initialize Swiper
-function initSwiper() {
-  const swiper = new Swiper('.swiper', {
-    slidesPerView: 2,
-    spaceBetween: 20,
-    freeMode: true,
-    loop: false,
-    autoplay: {
-      delay: 1500,
-      disableOnInteraction: true, 
-    },
-    breakpoints: {
-      500: {
-        slidesPerView: 2,
-      },
-      700: {
-        slidesPerView: 3,
-      },
-      1200: {
-        slidesPerView: 4,
-      }
-    },
-    parallax: {
-      dataSwiperParallax: 60,
-    },
-})
-
-}
-
-
-// function to show spinner
-function showSpinner() {
-  document.querySelector('.spinner').classList.add('show');
-}
-
-
-// Function to hide Spinner
-function hideSpinner() {
-    document.querySelector('.spinner').classList.remove('show');
-}
-
-
-// Source - https://stackoverflow.com/a
-// Posted by Elias Zamaria, modified by community. See post 'Timeline' for change history
-// Retrieved 2025-12-01, License - CC BY-SA 4.0
-
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-// show alert
-function showAlert(message, className = 'alert-error') {
-  const alertElement = document.createElement('div')
-  alertElement.classList.add('alert', className);
-  alertElement.appendChild(document.createTextNode(message));
-  document.querySelector('#alert').appendChild(alertElement)
-  setTimeout(() => alertElement.remove(), 3000);
-
-
-}
-
-// HighLightLinks
-function highlightActiveLink() {
-    const links = document.querySelectorAll('.nav-link');
-    const logo = document.querySelector('.logo');
-    const current = global.currentPage;
-
-    links.forEach((link) => {
-        const linkPath = new URL(link.getAttribute('href'), window.location.origin).pathname;
-        if (linkPath === current || (current === '/' && linkPath === '/index.html')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-
-    if (logo) {
-        const logoPath = new URL(logo.getAttribute('href'), window.location.origin).pathname;
-        if (logoPath === current || (current === '/' && logoPath === '/index.html')) {
-            logo.classList.add('active');
-        } else {
-            logo.classList.remove('active');
-        }
-    }
-}
-
-// init App
-function init() {
-// console.log(global.currentPage);
-  switch (global.currentPage) {
-    case  '/':
-    case  '/index.html':
-      displaySlider();
-      console.log("slider");
-      displayPopulayMovies();
-      console.log("index");
-      break;
-
-    case '/shows.html':
-        displaySliderShows();
-        displayPopularShows();
-        console.log('Shows');
-        break;
-
-    case '/movie-details.html':
-        displayMovieDetails();
-        console.log('Movie details');
-        break;
-
-    case '/tv-details.html':
-        displayTvShowDetails();
-        console.log('TV Show details');
-
-    case '/search.html':
-        displaySearch();
-        console.log('Search Results');
-        break;
-
-    // default:
-    //   break;
-  }
-
-  highlightActiveLink();
-}
-document.addEventListener('DOMContentLoaded', init);
