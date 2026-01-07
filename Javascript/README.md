@@ -1,8 +1,8 @@
 <h1> JavaScript Curriculum for Software Engineering School </h1>
 
-<h2> OBJCETIVE </h2>
+# OBJECTIVE
 
-<h3> Equip students with a deep understanding of JavaScript, preparing them for real-world software engineering challenges. The curriculum is designed to be comprehensive, hands-on, and aligned with modern development practices. </h3>
+This repository serves as my learning guide and is also designed to equip students with a deep understanding of JavaScript, preparing them for real-world software engineering challenges. The curriculum is comprehensive, hands-on, and aligned with modern development practices.
 
 # 1. Introduction to JavaScript
 
