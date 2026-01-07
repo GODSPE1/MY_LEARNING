@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="animatedclock.js" defer></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+    <title>Animated clock</title>
+
+</head>
+<body>
+    <h1>Animated Clock</h1>
+
+    <h3>Clock Style</h3>
+    <form action="">
+        <div class="form-input">
+            <label for="face-colour">Face Colour:</label>
+            <input type="color" id="face-color" name="face-colour" value="#f4f4f4">
+        </div>
+        <div class="form-input">
+            <label for="border-color">Border Colour:</label>
+            <input type="color" id="border-color" name="border-colour" value="#800000">
+        </div>
+        <div class="form-input">
+            <label for="number-lines-colour">Number Lines Colour:</label>
+            <input type="color" id="number-lines-color" name="number-lines-colour" value="#000000">
+        </div>
+        
+        <div class="form-input">
+            <label for="large-hand-colour">Large Hands Colour:</label>
+            <input type="color" id="large-hand-color" name="large-hand-colour" value="#800000">
+        </div>
+        <div class="form-input">
+            <label for="second-hand-colour">Second Hand Colour:</label>
+            <input type="color" id="second-hand-color" name="second-hand-colour" value="#ffffff">
+        </div>
+
+    </form>
+
+    <canvas id="canvas" width="500" height="500"></canvas>
+</body>
+</html>

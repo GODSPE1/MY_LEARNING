@@ -1,0 +1,23 @@
+.card {
+    background-color: #222;
+    border-left: 15px;
+    border-bottom: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 7px 20px;
+    width: 300px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.form-input {
+    /* width: 250px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px; */
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
